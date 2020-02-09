@@ -20,7 +20,8 @@ res.status(200).send("Hello World.")
 })
 
 app.get('/articles', (req,res,next)=>{
-    ArticlesService.getAllArticles()
+    const knexInstance = req.app.get('db')
+    ArticlesService.getAllArticles(knexInstance)
     .then(articles =>{
         res.json(articles)
     })
